@@ -6,8 +6,13 @@ from flask_cors import CORS
 # CORS is used to allow the client to make requests to the server 
 import google.generativeai as genai
 # generativeai is used to generate the response and also to configure the API key
+import os
+from dotenv import load_dotenv
 
-genai.configure(api_key="AIzaSyB1Kubblo3j3xlRlSEIA7-I4hPUNinFXWA")
+# Load environment variables from .env file
+load_dotenv()
+api_key = os.getenv("GOOGLE_AI_API_KEY")
+genai.configure(api_key=api_key)
 #  Configures the Google AI service with the special key.
 model = genai.GenerativeModel(model_name="gemini-1.5-flash")
 #  Sets up the model you want to use from Google AI.
